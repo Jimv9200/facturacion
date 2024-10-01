@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.4'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+allprojects{
+
+
+
+group = "com.tercertiempo"
+version = "1.0-SNAPSHOT"
+description ="Este proyecto tiene como objetivo automatizar el registro de " +
+        "ventas y la gestión de inventarios de un pequeño negocio. El sistema permite realizar un " +
+        "seguimiento preciso de los productos disponibles en el inventario, registrar " +
+        "las ventas diarias y generar reportes para facilitar la toma de decisiones en el negocio."
+
+repositories {
+    mavenCentral()
+
+}}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: "org.springframework.boot"
+    apply plugin:"io.spring.dependency-management"
+
+    dependencies {
+
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor("org.projectlombok:lombok")
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+        implementation("org.springframework.boot:spring-boot-starter-validation")
+
+    }
+
+
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
