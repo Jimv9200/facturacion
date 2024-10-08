@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 public class Cliente extends Persona implements Serializable{
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "cliente")
     private List<Venta> venta;
 
 }

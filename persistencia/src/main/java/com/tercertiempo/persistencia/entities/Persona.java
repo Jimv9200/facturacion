@@ -1,22 +1,21 @@
 package com.tercertiempo.persistencia.entities;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
 
 
+import java.io.Serializable;
 import java.util.Map;
 
-@Entity
+
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Persona {
+@MappedSuperclass
+public class Persona implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     @Column(length = 10, updatable = false)
@@ -27,6 +26,7 @@ public class Persona {
     private String apellido;
     private String direccion;
     @ElementCollection
+    @Column(nullable = false)
     private Map<String,String> telefono;
     @Email
     private String email;

@@ -21,14 +21,19 @@ public class DetalleVenta implements Serializable {
     @EqualsAndHashCode.Include
     private Integer id;
     @Min(value = 1)
+    @Column(nullable = false)
     private Integer cantidad;
     @PositiveOrZero
+    @Column(nullable = false)
     private Double precio;
+    @Column(nullable = false)
     private Double descuento;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Producto producto;
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Venta venta;
 
 }

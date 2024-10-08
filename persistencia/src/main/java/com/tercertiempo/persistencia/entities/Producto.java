@@ -1,9 +1,6 @@
 package com.tercertiempo.persistencia.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
 
@@ -27,12 +24,18 @@ public class Producto implements Serializable {
     private String nombre;
     private String descripcion;
     @Positive
+    @Column(nullable = false)
     private Double precio;
     @Positive
+    @Column(nullable = false)
     private Short cantidadDisponibles;
+    @Column(nullable = false)
     private Date fechaCreacion;
 
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "producto")
     private List<DetalleVenta> detalleVenta;
+
+    @ManyToMany()
+    private List<Proveedor> proveedores;
 
 }

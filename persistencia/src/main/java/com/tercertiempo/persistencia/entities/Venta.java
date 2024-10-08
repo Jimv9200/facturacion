@@ -22,6 +22,7 @@ public class Venta implements Serializable {
     @Column(updatable = false)
     private Integer id;
     @Future
+    @Column(nullable = false)
     private Date fecha;
     @Column(nullable = false)
     private String estado;
@@ -29,13 +30,15 @@ public class Venta implements Serializable {
     @Column(nullable = false)
     private Double total;
 
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "venta")
     private List<DetalleVenta> detalles;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Cliente cliente;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Empleado empleado;
 
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 public class Empleado extends Persona implements Serializable  {
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "empleado")
     private List<Venta> venta;
 
 }
