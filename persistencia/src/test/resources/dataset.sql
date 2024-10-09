@@ -14,3 +14,14 @@ insert into producto (codigo, nombre, precio_compra,precio_venta,descripcion, fe
     ("755548","Galletas festival", "1000","1700","Galletas festival sabor limon",'2024-10-08 10:30:45.123456',24);
 insert into producto (codigo, nombre, precio_compra,precio_venta,descripcion, fecha_creacion, cantidad_disponibles) values
     ("4558996","Poker 1L", "4500","7000","Poker en presentación 1 litro",'2024-10-07 10:30:45.123456',26);
+
+insert into venta (id,estado,fecha, total,cliente_cedula, empleado_cedula) values
+            (10,"EN_PROCESO",'2024-10-08 10:30:45.123456',0.0,"455589621","1094908238");
+insert into venta (id,estado,fecha, total,cliente_cedula, empleado_cedula) values
+    (11,"FALLIDA",'2024-10-08 10:30:45.123456',0.0,"109775687","1094908238");
+insert into venta (id,estado,fecha, total,cliente_cedula, empleado_cedula) values
+    (12,"CANCELADA",'2024-10-08 10:30:45.123456',0.0,"9738205","1094908238");
+insert into venta (id,estado,fecha, total,cliente_cedula, empleado_cedula) values
+    (13,"FINALIZADA",'2024-10-08 10:30:45.123456',36000.0,"1094908238","1094908238");
+insert into venta (id,estado,fecha, total,cliente_cedula, empleado_cedula) values
+    (19,"FINALIZADA",'2024-10-08 10:30:45.123456',76000.0,"1094908238","1094908238");

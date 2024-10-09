@@ -6,12 +6,15 @@ import com.tercertiempo.persistencia.entities.Venta;
 import com.tercertiempo.persistencia.repositorio.ClienteRepo;
 import com.tercertiempo.persistencia.repositorio.EmpleadoRepo;
 import com.tercertiempo.persistencia.repositorio.VentaRepo;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.util.Date;
+import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -46,5 +49,33 @@ public class VentaTest {
         venta.setFecha(new Date(2024));
         venta.setTotal(0.0);
         ventaRepo.save(venta);
+    }
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listarVentasTest(){
+        ventaRepo.findAll().forEach(System.out::println);
+
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listarVentasFinalizadasTest(){
+        ventaRepo.listarVentasFinalizadas().forEach(System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listarVentasPorClienteTest(){
+        List<Venta> ventaList= ventaRepo.listarVentasPorCliente("1094908238");
+        ventaList.forEach(System.out::println);
+        Assertions.assertEquals(2, ventaList.size());
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listarVentasPorCedulaTest(){
+        List<Venta> ventaList= ventaRepo.listarVentasPorCedula("1094908238");
+        ventaList.forEach(System.out::println);
+        Assertions.assertEquals(2, ventaList.size());
     }
 }

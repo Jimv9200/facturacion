@@ -15,6 +15,7 @@ import java.util.Map;
 @ToString(callSuper = true)
 public class Cliente extends Persona implements Serializable{
     @OneToMany(mappedBy = "cliente")
+    @ToString.Exclude
     private List<Venta> venta;
 
     public Cliente(String cedula, String nombre, String apellido, String direccion, Map<String, String> telefono, String email) {

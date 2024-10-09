@@ -3,15 +3,20 @@ package com.tercertiempo.persistencia;
 import com.tercertiempo.persistencia.entities.Cliente;
 
 import com.tercertiempo.persistencia.repositorio.ClienteRepo;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @DataJpaTest
@@ -69,5 +74,20 @@ public class ClienteTest {
     @Sql("classpath:dataset.sql")
     public void listarClientesTest(){
         clienteRepo.findAll().forEach(System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void buscarClientesPaginadorTest(){
+        Page<Cliente> clientePage= clienteRepo.findAll(PageRequest.of(1,3));
+        clientePage.get().forEach(System.out::println);
+
+    }
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void buscarClientesSortTest(){
+        List<Cliente> clientePage= clienteRepo.findAll(Sort.by(Sort.Direction.DESC,"nombre"));
+        clientePage.forEach(System.out::println);
+
     }
 }

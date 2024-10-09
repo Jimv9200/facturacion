@@ -10,7 +10,7 @@ import java.util.Map;
 public class Proveedor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idProveedor;
+    private Integer idProveedor;
     @Column(nullable = false)
     private String nombre;
     @ElementCollection
