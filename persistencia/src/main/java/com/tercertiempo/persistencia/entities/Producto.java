@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
+@ToString
 public class Producto implements Serializable {
 
 
@@ -25,7 +26,10 @@ public class Producto implements Serializable {
     private String descripcion;
     @Positive
     @Column(nullable = false)
-    private Double precio;
+    private Double precioCompra;
+    @Positive
+    @Column(nullable = false)
+    private Double precioVenta;
     @Positive
     @Column(nullable = false)
     private Short cantidadDisponibles;
@@ -33,9 +37,11 @@ public class Producto implements Serializable {
     private Date fechaCreacion;
 
     @OneToMany(mappedBy = "producto")
+    @ToString.Exclude
     private List<DetalleVenta> detalleVenta;
 
     @ManyToMany()
+    @ToString.Exclude
     private List<Proveedor> proveedores;
 
 }

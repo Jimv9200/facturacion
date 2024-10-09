@@ -15,19 +15,24 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
 public class Venta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     @Column(updatable = false)
+    @ToString.Include
     private Integer id;
     @Future
     @Column(nullable = false)
+    @ToString.Include
     private Date fecha;
     @Column(nullable = false)
+    @ToString.Include
     private String estado;
     @Positive
     @Column(nullable = false)
+    @ToString.Include
     private Double total;
 
     @OneToMany(mappedBy = "venta")
